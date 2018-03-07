@@ -24,7 +24,7 @@ const locationTerms = [
   "Finland	Helsinki",
   "France	Nice",
   "France	Paris",
-  //"Galapagos	Puerto Baquerizo Moreno",
+  //"Galapagos	Puerto Baquerizo Moreno", // https://www.quasarex.com/galapagos/climate-and-weather
   "Germany	Munich",
   "Greece	Athens",
   "Greece	Santorini",
@@ -35,11 +35,11 @@ const locationTerms = [
   "Israel	Tel Aviv",
   "Italy	Rome",
   "Japan	Hiroshima",
-  //"Japan	Hokkaido",
-  // "Japan	Koyasan", // Koya
+  {search: "Japan	Sapporo, additional: "Hokkaido"},
+  // "Japan	Koyasan", // Koya https://www.worldweatheronline.com/lang/en-us/koyasan-weather-averages/wakayama/jp.aspx
   "Japan	Kumamoto",
   "Japan	Kyoto",
-  "Japan	Kyushu",
+  {search: "Japan	Fukuoka", additional: "Kyushu"},
   "Japan	Osaka",
   "Japan	Sapporo",
   "Japan	Tokyo",
@@ -148,7 +148,7 @@ function load(locationTerm, cb) {
     }) // Finally, run the queue of commands specified
 }
 
-async.eachSeries(locationTerms.slice(0, 40), load, function(err) {
+async.eachSeries(locationTerms, load, function(err) {
   if (err) {
     throw err;
   }
